@@ -1,0 +1,9 @@
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/simple-smbd.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/package.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/package_source.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/edit_cache.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/rebuild_cache.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/list_install_components.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/install.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/install/local.dir
+/Users/blb/Workspace/SimpleDaemons/simple-smbd/build/CMakeFiles/install/strip.dir

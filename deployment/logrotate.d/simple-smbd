@@ -1,0 +1,14 @@
+/var/log/simple-smbd/*.log {
+    daily
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    create 644 _simple-smbd _simple-smbd
+    postrotate
+        /bin/systemctl reload simple-smbd > /dev/null 2>&1 || true
+    endscript
+    sharedscripts
+    su _simple-smbd _simple-smbd
+}
