@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  simple-smbd:
+    image: simple-smbd:latest
+    container_name: simple-smbd
+    ports:
+      - "21:21/tcp"
+    volumes:
+      - ./config:/etc/simple-smbd:ro
+      - ./data:/var/lib/simple-smbd
+      - ./logs:/var/log/simple-smbd
+    environment:
+      - SIMPLE-SMBD_CONFIG=/etc/simple-smbd/simple-smbd.conf
+      - SIMPLE-SMBD_LOG_LEVEL=info
+      - SIMPLE-SMBD_BIND_ADDRESS=0.0.0.0
+      - SIMPLE-SMBD_BIND_PORT=21
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "21"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - simple-smbd-network
+
+networks:
+  simple-smbd-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
