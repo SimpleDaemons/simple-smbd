@@ -1,0 +1,17 @@
+[Unit]
+Description=Simple SMB CIFS Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=simple-smbd
+Group=simple-smbd
+ExecStart=/usr/local/bin/simple-smbd
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=simple-smbd
+
+[Install]
+WantedBy=multi-user.target

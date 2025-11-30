@@ -24,7 +24,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "simple_smbd/smbd_app.hpp"
+#include "simple-smbd/core/app.hpp"
 
 using namespace simple_smbd;
 

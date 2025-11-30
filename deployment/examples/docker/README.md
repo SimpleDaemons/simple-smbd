@@ -29,7 +29,7 @@ This directory contains Docker deployment examples for simple-smbd.
 | `SIMPLE-SMBD_CONFIG` | `/etc/simple-smbd/simple-smbd.conf` | Configuration file path |
 | `SIMPLE-SMBD_LOG_LEVEL` | `info` | Log level (debug, info, warn, error) |
 | `SIMPLE-SMBD_BIND_ADDRESS` | `0.0.0.0` | Bind address |
-| `SIMPLE-SMBD_BIND_PORT` | `` | Bind port |
+| `SIMPLE-SMBD_BIND_PORT` | `21` | Bind port |
 
 ### Volumes
 
@@ -66,7 +66,7 @@ docker-compose down -v
 
 The container includes health checks that verify the service is responding:
 
-- **Check command:** `nc -z localhost `
+- **Check command:** `nc -z localhost 21`
 - **Interval:** 30 seconds
 - **Timeout:** 10 seconds
 - **Retries:** 3
@@ -97,11 +97,11 @@ docker-compose exec simple-smbd cat /etc/simple-smbd/simple-smbd.conf
 ### Port conflicts
 ```bash
 # Check what's using the port
-netstat -tlnp | grep 
+netstat -tlnp | grep 21
 
 # Change port in docker-compose.yml
 ports:
-  - "8080:/tcp"
+  - "8080:21/tcp"
 ```
 
 ### Permission issues

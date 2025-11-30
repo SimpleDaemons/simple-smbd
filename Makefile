@@ -1,6 +1,6 @@
 # Makefile for simple-smbd
 # Simple SMB CIFS Daemon
-# Copyright  SimpleDaemons <info@simpledaemons.com>
+# Copyright 2024 SimpleDaemons <info@simpledaemons.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 # Variables
 PROJECT_NAME = simple-smbd
-VERSION = 
+VERSION = 0.1.0
 BUILD_DIR = build
 DIST_DIR = dist
 PACKAGE_DIR = packaging
@@ -425,7 +425,7 @@ docker-build:
 	docker build -t $(PROJECT_NAME):$(VERSION) .
 
 docker-run:
-	docker run -d --name $(PROJECT_NAME)-$(VERSION) -p : $(PROJECT_NAME):$(VERSION)
+	docker run -d --name $(PROJECT_NAME)-$(VERSION) -p 21:21 $(PROJECT_NAME):$(VERSION)
 
 docker-stop:
 	docker stop $(PROJECT_NAME)-$(VERSION)
@@ -463,8 +463,8 @@ else ifeq ($(PLATFORM),windows)
 		scripts\build-windows.bat --service; \
 	) else ( \
 		echo "Windows build script not found. Please install service manually:"; \
-		echo "  sc create  binPath= \"$(INSTALL_PREFIX)\\bin\\$(PROJECT_NAME).exe\""; \
-		echo "  sc start "; \
+		echo "  sc create SimpleSFTPDaemon binPath= \"$(INSTALL_PREFIX)\\bin\\$(PROJECT_NAME).exe\""; \
+		echo "  sc start SimpleSFTPDaemon"; \
 	)
 endif
 
@@ -492,7 +492,7 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Checking service status on Windows..."
-	@sc query 
+	@sc query SimpleSFTPDaemon
 endif
 
 # Help - Main help (most common targets)
@@ -828,7 +828,7 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Starting service on Windows..."
-	@sc start 
+	@sc start SimpleSFTPDaemon
 endif
 
 service-stop:
@@ -850,7 +850,7 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Stopping service on Windows..."
-	@sc stop 
+	@sc stop SimpleSFTPDaemon
 endif
 
 service-restart:
@@ -874,9 +874,9 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Restarting service on Windows..."
-	@sc stop 
+	@sc stop SimpleSFTPDaemon
 	@timeout /t 2 /nobreak >nul
-	@sc start 
+	@sc start SimpleSFTPDaemon
 endif
 
 service-enable:
@@ -898,7 +898,7 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Enabling service on Windows..."
-	@sc config  start= auto
+	@sc config SimpleSFTPDaemon start= auto
 endif
 
 service-disable:
@@ -920,7 +920,7 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Disabling service on Windows..."
-	@sc config  start= disabled
+	@sc config SimpleSFTPDaemon start= disabled
 endif
 
 service-uninstall:
@@ -946,9 +946,9 @@ else ifeq ($(PLATFORM),linux)
 	fi
 else ifeq ($(PLATFORM),windows)
 	@echo "Uninstalling service on Windows..."
-	@sc query  >nul 2>&1 && ( \
-		sc stop ; \
-		sc delete ; \
+	@sc query SimpleSFTPDaemon >nul 2>&1 && ( \
+		sc stop SimpleSFTPDaemon; \
+		sc delete SimpleSFTPDaemon; \
 		echo "Service uninstalled successfully"; \
 	) || echo "Service not found"
 endif
