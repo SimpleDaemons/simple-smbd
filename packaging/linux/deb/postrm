@@ -1,0 +1,23 @@
+#!/bin/bash
+# Post-removal script for simple-smbd
+
+set -e
+
+PROJECT_NAME="simple-smbd"
+CONFIG_DIR="/etc/$simple-smbd"
+LOG_DIR="/var/log/$simple-smbd"
+
+if [ "$1" = "purge" ]; then
+    # Remove configuration files (optional - user may want to keep them)
+    # Uncomment to remove config on purge:
+    # rm -rf "$CONFIG_DIR"
+    
+    # Remove log files
+    rm -rf "$LOG_DIR"
+    
+    # Remove service user (optional)
+    # userdel smbddev 2>/dev/null || true
+fi
+
+exit 0
+
