@@ -12,9 +12,9 @@ graph TB
 
     subgraph "SMB Server"
         Server[simple-smbd<br/>Main Process]
-        Config[/etc/simple-smbd/<br/>Configuration]
-        Shares[/var/samba/shares<br/>Shared Directories]
-        Logs[/var/log/simple-smbd/<br/>SMB Logs]
+        Config[Configuration<br/>/etc/simple-smbd/]
+        Shares[Shared Directories<br/>/var/samba/shares]
+        Logs[SMB Logs<br/>/var/log/simple-smbd/]
     end
 
     subgraph "System Services"
