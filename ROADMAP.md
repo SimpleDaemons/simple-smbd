@@ -1,5 +1,8 @@
 # Simple SMB Daemon - Development Roadmap
 
+
+**Honesty note:** Prefer [project/PROGRESS_REPORT.md](project/PROGRESS_REPORT.md) when phase checkmarks may be historical. Item-level tracking: [project/ROADMAP_CHECKLIST.md](project/ROADMAP_CHECKLIST.md). Overview: [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md).
+
 ## Overview
 The Simple SMB Daemon (simple-smbd) is a lightweight, high-performance SMB/CIFS server implementation designed for modern systems. This roadmap outlines the development phases and milestones for creating a production-ready SMB daemon.
 
